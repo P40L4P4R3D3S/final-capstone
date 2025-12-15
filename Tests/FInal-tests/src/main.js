@@ -1,7 +1,7 @@
 import { FileManager } from './fileManager.js';
-import { Lexer } from './lexer.js';
-import { Parser } from './parser.js';
-import { Interpreter } from './interpreter.js';
+import { Lexer } from './utils/lexer.js';
+import { Parser } from './utils/parser.js';
+import { Interpreter } from './core/interpreter.js';
 
 function parseArgs(argv) {
 	const options = {

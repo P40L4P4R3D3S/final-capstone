@@ -25,91 +25,216 @@
   {
     "step": 3,
     "kind": "VarDeclaration",
-    "name": "a",
+    "name": "z",
     "before": null,
-    "after": 1,
-    "expr": "1",
+    "after": 8,
+    "expr": "x * y",
     "env": {
       "x": 4,
       "y": 2,
-      "a": 1
+      "z": 8
     }
   },
   {
     "step": 4,
-    "kind": "VarDeclaration",
-    "name": "z",
-    "before": null,
-    "after": 4,
-    "expr": "x * a",
+    "kind": "WhileTest",
+    "condition": "z > 0",
+    "result": true,
     "env": {
       "x": 4,
       "y": 2,
-      "a": 1,
-      "z": 4
+      "z": 8
     }
   },
   {
     "step": 5,
-    "kind": "WhileTest",
-    "condition": "z > 0",
-    "result": true,
+    "kind": "Assignment",
+    "name": "z",
+    "before": 8,
+    "after": 7,
+    "expr": "z - 1",
     "env": {
       "x": 4,
       "y": 2,
-      "a": 1,
-      "z": 4
+      "z": 7
     }
   },
   {
     "step": 6,
-    "kind": "Assignment",
-    "name": "z",
-    "before": 4,
-    "after": 2,
-    "expr": "z - y",
-    "env": {
-      "x": 4,
-      "y": 2,
-      "a": 1,
-      "z": 2
-    }
-  },
-  {
-    "step": 7,
     "kind": "WhileTest",
     "condition": "z > 0",
     "result": true,
     "env": {
       "x": 4,
       "y": 2,
-      "a": 1,
-      "z": 2
+      "z": 7
+    }
+  },
+  {
+    "step": 7,
+    "kind": "Assignment",
+    "name": "z",
+    "before": 7,
+    "after": 6,
+    "expr": "z - 1",
+    "env": {
+      "x": 4,
+      "y": 2,
+      "z": 6
     }
   },
   {
     "step": 8,
-    "kind": "Assignment",
-    "name": "z",
-    "before": 2,
-    "after": 0,
-    "expr": "z - y",
+    "kind": "WhileTest",
+    "condition": "z > 0",
+    "result": true,
     "env": {
       "x": 4,
       "y": 2,
-      "a": 1,
-      "z": 0
+      "z": 6
     }
   },
   {
     "step": 9,
+    "kind": "Assignment",
+    "name": "z",
+    "before": 6,
+    "after": 5,
+    "expr": "z - 1",
+    "env": {
+      "x": 4,
+      "y": 2,
+      "z": 5
+    }
+  },
+  {
+    "step": 10,
+    "kind": "WhileTest",
+    "condition": "z > 0",
+    "result": true,
+    "env": {
+      "x": 4,
+      "y": 2,
+      "z": 5
+    }
+  },
+  {
+    "step": 11,
+    "kind": "Assignment",
+    "name": "z",
+    "before": 5,
+    "after": 4,
+    "expr": "z - 1",
+    "env": {
+      "x": 4,
+      "y": 2,
+      "z": 4
+    }
+  },
+  {
+    "step": 12,
+    "kind": "WhileTest",
+    "condition": "z > 0",
+    "result": true,
+    "env": {
+      "x": 4,
+      "y": 2,
+      "z": 4
+    }
+  },
+  {
+    "step": 13,
+    "kind": "Assignment",
+    "name": "z",
+    "before": 4,
+    "after": 3,
+    "expr": "z - 1",
+    "env": {
+      "x": 4,
+      "y": 2,
+      "z": 3
+    }
+  },
+  {
+    "step": 14,
+    "kind": "WhileTest",
+    "condition": "z > 0",
+    "result": true,
+    "env": {
+      "x": 4,
+      "y": 2,
+      "z": 3
+    }
+  },
+  {
+    "step": 15,
+    "kind": "Assignment",
+    "name": "z",
+    "before": 3,
+    "after": 2,
+    "expr": "z - 1",
+    "env": {
+      "x": 4,
+      "y": 2,
+      "z": 2
+    }
+  },
+  {
+    "step": 16,
+    "kind": "WhileTest",
+    "condition": "z > 0",
+    "result": true,
+    "env": {
+      "x": 4,
+      "y": 2,
+      "z": 2
+    }
+  },
+  {
+    "step": 17,
+    "kind": "Assignment",
+    "name": "z",
+    "before": 2,
+    "after": 1,
+    "expr": "z - 1",
+    "env": {
+      "x": 4,
+      "y": 2,
+      "z": 1
+    }
+  },
+  {
+    "step": 18,
+    "kind": "WhileTest",
+    "condition": "z > 0",
+    "result": true,
+    "env": {
+      "x": 4,
+      "y": 2,
+      "z": 1
+    }
+  },
+  {
+    "step": 19,
+    "kind": "Assignment",
+    "name": "z",
+    "before": 1,
+    "after": 0,
+    "expr": "z - 1",
+    "env": {
+      "x": 4,
+      "y": 2,
+      "z": 0
+    }
+  },
+  {
+    "step": 20,
     "kind": "WhileTest",
     "condition": "z > 0",
     "result": false,
     "env": {
       "x": 4,
       "y": 2,
-      "a": 1,
       "z": 0
     }
   }

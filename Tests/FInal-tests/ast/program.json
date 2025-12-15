@@ -27,17 +27,6 @@
       "type": "VarDeclaration",
       "name": {
         "type": "Identifier",
-        "name": "a"
-      },
-      "value": {
-        "type": "NumberLiteral",
-        "value": 1
-      }
-    },
-    {
-      "type": "VarDeclaration",
-      "name": {
-        "type": "Identifier",
         "name": "z"
       },
       "value": {
@@ -49,7 +38,7 @@
         },
         "right": {
           "type": "Identifier",
-          "name": "a"
+          "name": "y"
         }
       }
     },
@@ -82,8 +71,8 @@
               "name": "z"
             },
             "right": {
-              "type": "Identifier",
-              "name": "y"
+              "type": "NumberLiteral",
+              "value": 1
             }
           }
         }

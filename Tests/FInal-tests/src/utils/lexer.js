@@ -152,4 +152,3 @@ export class Lexer {
 		return tokens;
 	}
 }
-
