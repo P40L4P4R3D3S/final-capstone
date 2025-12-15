@@ -5,6 +5,7 @@ export class PythonTranspiler {
 		this.lines = [];
 	}
 
+	// main method to generate python code from ast
 	generate(ast) {
 		this.lines = [];
 		this.indentLevel = 0;
@@ -14,10 +15,12 @@ export class PythonTranspiler {
 		return this.lines.join('\n') + '\n';
 	}
 
+	// emits a line with current indentation
 	emit(line) {
 		this.lines.push(this.indentText.repeat(this.indentLevel) + line);
 	}
 
+	// executes a function with increased indentation level
 	withIndent(fn) {
 		this.indentLevel += 1;
 		try {
@@ -27,6 +30,7 @@ export class PythonTranspiler {
 		}
 	}
 
+	// generates code for the program node
 	genProgram(node) {
 		if (!node || node.type !== 'Program') {
 			throw new Error('PythonTranspiler expects a Program node at top-level');
@@ -42,6 +46,7 @@ export class PythonTranspiler {
 		}
 	}
 
+	// generates code for statements
 	genStatement(node) {
 		switch (node.type) {
 			case 'VarDeclaration': {
@@ -78,6 +83,7 @@ export class PythonTranspiler {
 		}
 	}
 
+	// generates code for a block of statements
 	genBlock(statements) {
 		if (!Array.isArray(statements) || statements.length === 0) {
 			this.emit('pass');
@@ -89,6 +95,7 @@ export class PythonTranspiler {
 		}
 	}
 
+	// generates code for conditions
 	genCondition(node) {
 		if (!node || node.type !== 'RelationalExpr') {
 			throw new Error(`Expected RelationalExpr, got: ${node?.type ?? node}`);
@@ -99,6 +106,7 @@ export class PythonTranspiler {
 		return `${left} ${node.operator} ${right}`;
 	}
 
+	// generates code for expressions with precedence
 	genExpr(node, parentPrecedence = 0) {
 		switch (node.type) {
 			case 'NumberLiteral':
@@ -120,6 +128,7 @@ export class PythonTranspiler {
 		}
 	}
 
+	// gets precedence for operators
 	exprPrecedence(operator) {
 		switch (operator) {
 			case '*':
@@ -132,4 +141,3 @@ export class PythonTranspiler {
 		}
 	}
 }
-

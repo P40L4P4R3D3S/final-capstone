@@ -1,4 +1,5 @@
 export class Interpreter {
+	// constructor the interpreter
 	constructor({ maxSteps = 10000, onTrace } = {}) {
 		this.maxSteps = maxSteps;
 		this.onTrace = onTrace;
@@ -20,6 +21,7 @@ export class Interpreter {
 		};
 	}
 
+	// creates a snapshot of the current environment
 	snapshot() {
 		return Object.fromEntries(this.env.entries());
 	}
@@ -37,6 +39,7 @@ export class Interpreter {
 		if (this.onTrace) this.onTrace(fullEntry);
 	}
 
+	// executes the program node
 	execProgram(node) {
 		if (!node || node.type !== 'Program') {
 			throw new Error('Interpreter expects a Program node at top-level');
@@ -47,6 +50,7 @@ export class Interpreter {
 		}
 	}
 
+	// executes statements based on type
 	execStatement(node) {
 		switch (node.type) {
 			case 'VarDeclaration': {
@@ -124,6 +128,7 @@ export class Interpreter {
 		}
 	}
 
+	// evaluates expressions to values
 	evalExpr(node) {
 		switch (node.type) {
 			case 'NumberLiteral':
@@ -158,6 +163,7 @@ export class Interpreter {
 		}
 	}
 
+	// evaluates relational expressions to booleans
 	evalBool(node) {
 		if (node.type !== 'RelationalExpr') {
 			throw new Error(`Expected RelationalExpr, got: ${node.type}`);
@@ -184,13 +190,16 @@ export class Interpreter {
 		}
 	}
 
+	// formats condition for tracing
 	formatCondition(node) {
-		if (!node || node.type !== 'RelationalExpr') return String(node?.type ?? node);
+		if (!node || node.type !== 'RelationalExpr')
+			return String(node?.type ?? node);
 		return `${this.formatExpr(node.left)} ${node.operator} ${this.formatExpr(
 			node.right
 		)}`;
 	}
 
+	// formats expressions with precedence
 	formatExpr(node, parentPrecedence = 0) {
 		switch (node.type) {
 			case 'NumberLiteral':
@@ -209,6 +218,7 @@ export class Interpreter {
 		}
 	}
 
+	// gets precedence for operators
 	exprPrecedence(node) {
 		if (node.type !== 'BinaryExpr') return 99;
 		switch (node.operator) {
@@ -222,4 +232,3 @@ export class Interpreter {
 		}
 	}
 }
-

@@ -3,13 +3,15 @@ import { Lexer } from './utils/lexer.js';
 import { Parser } from './utils/parser.js';
 import { Interpreter } from './core/interpreter.js';
 import { PythonTranspiler } from './core/transpiler.js';
+import { WasmTranspiler } from './core/wasmTranspiler.js';
 
 function parseArgs(argv) {
 	const options = {
 		fileName: 'program.txt',
-		printTokens: true,
-		printAst: true,
-		printPython: true,
+		printTokens: false,
+		printAst: false,
+		printPython: false,
+		printWat: false,
 		saveFiles: true,
 		maxSteps: 10000,
 	};
@@ -27,6 +29,11 @@ function parseArgs(argv) {
 
 		if (arg === '--python') {
 			options.printPython = true;
+			continue;
+		}
+
+		if (arg === '--wat') {
+			options.printWat = true;
 			continue;
 		}
 
@@ -81,8 +88,15 @@ function formatTrace(entry) {
 }
 
 function main() {
-	const { fileName, printTokens, printAst, printPython, saveFiles, maxSteps } =
-		parseArgs(process.argv.slice(2));
+	const {
+		fileName,
+		printTokens,
+		printAst,
+		printPython,
+		printWat,
+		saveFiles,
+		maxSteps,
+	} = parseArgs(process.argv.slice(2));
 
 	const fm = new FileManager();
 	const source = fm.readSourceFile(fileName);
@@ -128,6 +142,20 @@ function main() {
 	if (printPython) {
 		console.log('\nPYTHON OUTPUT:\n');
 		console.log(pythonCode);
+	}
+
+	console.log('\nTRANSPILING TO WAT (WebAssembly):\n');
+	const wasmTranspiler = new WasmTranspiler();
+	const watCode = wasmTranspiler.generate(ast);
+
+	if (saveFiles) {
+		const watPath = fm.saveWat(fileName, watCode);
+		console.log(`WAT saved to: ${watPath}`);
+	}
+
+	if (printWat) {
+		console.log('\nWAT OUTPUT:\n');
+		console.log(watCode);
 	}
 }
 

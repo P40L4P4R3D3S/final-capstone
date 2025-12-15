@@ -59,4 +59,12 @@ export class FileManager {
 		fs.writeFileSync(filePath, pythonCode, 'utf8');
 		return filePath;
 	}
+
+	// Save transpiled WAT code in /dist
+	saveWat(fileName, watCode) {
+		const outputName = fileName.replace(/\.[^/.]+$/, '') + '.wat';
+		const filePath = path.join(this.distPath, outputName);
+		fs.writeFileSync(filePath, watCode, 'utf8');
+		return filePath;
+	}
 }
