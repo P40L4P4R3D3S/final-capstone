@@ -1,0 +1,116 @@
+[
+  {
+    "step": 1,
+    "kind": "VarDeclaration",
+    "name": "x",
+    "before": null,
+    "after": 4,
+    "expr": "4",
+    "env": {
+      "x": 4
+    }
+  },
+  {
+    "step": 2,
+    "kind": "VarDeclaration",
+    "name": "y",
+    "before": null,
+    "after": 2,
+    "expr": "2",
+    "env": {
+      "x": 4,
+      "y": 2
+    }
+  },
+  {
+    "step": 3,
+    "kind": "VarDeclaration",
+    "name": "a",
+    "before": null,
+    "after": 1,
+    "expr": "1",
+    "env": {
+      "x": 4,
+      "y": 2,
+      "a": 1
+    }
+  },
+  {
+    "step": 4,
+    "kind": "VarDeclaration",
+    "name": "z",
+    "before": null,
+    "after": 4,
+    "expr": "x * a",
+    "env": {
+      "x": 4,
+      "y": 2,
+      "a": 1,
+      "z": 4
+    }
+  },
+  {
+    "step": 5,
+    "kind": "WhileTest",
+    "condition": "z > 0",
+    "result": true,
+    "env": {
+      "x": 4,
+      "y": 2,
+      "a": 1,
+      "z": 4
+    }
+  },
+  {
+    "step": 6,
+    "kind": "Assignment",
+    "name": "z",
+    "before": 4,
+    "after": 2,
+    "expr": "z - y",
+    "env": {
+      "x": 4,
+      "y": 2,
+      "a": 1,
+      "z": 2
+    }
+  },
+  {
+    "step": 7,
+    "kind": "WhileTest",
+    "condition": "z > 0",
+    "result": true,
+    "env": {
+      "x": 4,
+      "y": 2,
+      "a": 1,
+      "z": 2
+    }
+  },
+  {
+    "step": 8,
+    "kind": "Assignment",
+    "name": "z",
+    "before": 2,
+    "after": 0,
+    "expr": "z - y",
+    "env": {
+      "x": 4,
+      "y": 2,
+      "a": 1,
+      "z": 0
+    }
+  },
+  {
+    "step": 9,
+    "kind": "WhileTest",
+    "condition": "z > 0",
+    "result": false,
+    "env": {
+      "x": 4,
+      "y": 2,
+      "a": 1,
+      "z": 0
+    }
+  }
+]

@@ -1,0 +1,93 @@
+{
+  "type": "Program",
+  "body": [
+    {
+      "type": "VarDeclaration",
+      "name": {
+        "type": "Identifier",
+        "name": "x"
+      },
+      "value": {
+        "type": "NumberLiteral",
+        "value": 4
+      }
+    },
+    {
+      "type": "VarDeclaration",
+      "name": {
+        "type": "Identifier",
+        "name": "y"
+      },
+      "value": {
+        "type": "NumberLiteral",
+        "value": 2
+      }
+    },
+    {
+      "type": "VarDeclaration",
+      "name": {
+        "type": "Identifier",
+        "name": "a"
+      },
+      "value": {
+        "type": "NumberLiteral",
+        "value": 1
+      }
+    },
+    {
+      "type": "VarDeclaration",
+      "name": {
+        "type": "Identifier",
+        "name": "z"
+      },
+      "value": {
+        "type": "BinaryExpr",
+        "operator": "*",
+        "left": {
+          "type": "Identifier",
+          "name": "x"
+        },
+        "right": {
+          "type": "Identifier",
+          "name": "a"
+        }
+      }
+    },
+    {
+      "type": "While",
+      "condition": {
+        "type": "RelationalExpr",
+        "operator": ">",
+        "left": {
+          "type": "Identifier",
+          "name": "z"
+        },
+        "right": {
+          "type": "NumberLiteral",
+          "value": 0
+        }
+      },
+      "body": [
+        {
+          "type": "Assignment",
+          "name": {
+            "type": "Identifier",
+            "name": "z"
+          },
+          "value": {
+            "type": "BinaryExpr",
+            "operator": "-",
+            "left": {
+              "type": "Identifier",
+              "name": "z"
+            },
+            "right": {
+              "type": "Identifier",
+              "name": "y"
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
