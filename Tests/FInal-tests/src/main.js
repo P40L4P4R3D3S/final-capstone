@@ -2,12 +2,14 @@ import { FileManager } from './fileManager.js';
 import { Lexer } from './utils/lexer.js';
 import { Parser } from './utils/parser.js';
 import { Interpreter } from './core/interpreter.js';
+import { PythonTranspiler } from './core/transpiler.js';
 
 function parseArgs(argv) {
 	const options = {
 		fileName: 'program.txt',
 		printTokens: true,
 		printAst: true,
+		printPython: true,
 		saveFiles: true,
 		maxSteps: 10000,
 	};
@@ -20,6 +22,11 @@ function parseArgs(argv) {
 
 		if (arg === '--ast') {
 			options.printAst = true;
+			continue;
+		}
+
+		if (arg === '--python') {
+			options.printPython = true;
 			continue;
 		}
 
@@ -74,9 +81,8 @@ function formatTrace(entry) {
 }
 
 function main() {
-	const { fileName, printTokens, printAst, saveFiles, maxSteps } = parseArgs(
-		process.argv.slice(2)
-	);
+	const { fileName, printTokens, printAst, printPython, saveFiles, maxSteps } =
+		parseArgs(process.argv.slice(2));
 
 	const fm = new FileManager();
 	const source = fm.readSourceFile(fileName);
@@ -94,6 +100,7 @@ function main() {
 		console.log(`AST saved to: ${astPath}`);
 	}
 
+	console.log('\nINTERPRETER\n');
 	console.log('\nEXEC TRACE:\n');
 	const interpreter = new Interpreter({
 		maxSteps,
@@ -108,6 +115,20 @@ function main() {
 	}
 
 	console.log('\nFINAL RESULT:', result.env);
+
+	console.log('\nTRANSPILING TO PYTHON:\n');
+	const transpiler = new PythonTranspiler();
+	const pythonCode = transpiler.generate(ast);
+
+	if (saveFiles) {
+		const pythonPath = fm.savePython(fileName, pythonCode);
+		console.log(`Python saved to: ${pythonPath}`);
+	}
+
+	if (printPython) {
+		console.log('\nPYTHON OUTPUT:\n');
+		console.log(pythonCode);
+	}
 }
 
 main();

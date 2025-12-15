@@ -11,9 +11,11 @@ export class FileManager {
 		this.originPath = path.join(this.baseDir, 'origin');
 		this.astPath = path.join(this.baseDir, 'ast');
 		this.tracePath = path.join(this.baseDir, 'trace');
+		this.distPath = path.join(this.baseDir, 'dist');
 
 		this.ensureFolder(this.astPath);
 		this.ensureFolder(this.tracePath);
+		this.ensureFolder(this.distPath);
 	}
 
 	// Create folder if missing
@@ -47,6 +49,14 @@ export class FileManager {
 		const outputName = fileName.replace(/\.[^/.]+$/, '') + '.trace.json';
 		const filePath = path.join(this.tracePath, outputName);
 		fs.writeFileSync(filePath, JSON.stringify(traceObject, null, 2), 'utf8');
+		return filePath;
+	}
+
+	// Save transpiled Python code in /dist
+	savePython(fileName, pythonCode) {
+		const outputName = fileName.replace(/\.[^/.]+$/, '') + '.py';
+		const filePath = path.join(this.distPath, outputName);
+		fs.writeFileSync(filePath, pythonCode, 'utf8');
 		return filePath;
 	}
 }
